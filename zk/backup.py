@@ -106,15 +106,15 @@ def restore_backup(conn, data, erase=False, clear_attendance=False, high_rate=Fa
     if data['fp_version'] != fp_version:
         raise ZKErrorResponse('Fingerprint version mismatch {} != {}'.format(fp_version, data['fp_version']))
 
-    if erase:
-        erase_device(conn, clear_attendance=clear_attendance, prompt_serial=prompt_serial)
-
     users = [User.json_unpack(u) for u in data['users']]
     templates = [Finger.json_unpack(t) for t in data['templates']]
 
     by_uid = {}
     for t in templates:
         by_uid.setdefault(t.uid, []).append(t)
+
+    if erase:
+        erase_device(conn, clear_attendance=clear_attendance, prompt_serial=prompt_serial)
 
     if high_rate:
         usertemplates = []
