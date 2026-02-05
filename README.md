@@ -335,136 +335,28 @@ optional arguments:
 
 **Backup/Restore (Users and fingers only!!!)** *(WARNING! destructive test! do it at your own risk!)*
 
+Use the installed CLI:
+
 ```sh
-usage: ./test_backup_restore.py [-h] [-a ADDRESS] [-p PORT] [-T TIMEOUT]
-                              [-P PASSWORD] [-f] [-v] [-r]
-                              [filename]
-
-ZK Basic Backup/Restore Tool
-
-positional arguments:
-  filename              backup filename (default [serialnumber].bak)
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -a ADDRESS, --address ADDRESS
-                        ZK device Address [192.168.1.201]
-  -p PORT, --port PORT  ZK device port [4370]
-  -T TIMEOUT, --timeout TIMEOUT
-                        Default [10] seconds (0: disable timeout)
-  -P PASSWORD, --password PASSWORD
-                        Device code/password
-  -f, --force-udp       Force UDP communication
-  -v, --verbose         Print debug information
-  -E, --erase           clean the device after writting backup!
-  -r, --restore         Restore from backup
-  -c, --clear-attendance
-                        On Restore, also clears the attendance [default keep
-                        attendance]
+pyzk-backup --help
+pyzk-backup -a 192.168.1.201
+pyzk-backup -a 192.168.1.201 --restore backup.json.bak
 ```
+
+The legacy script `test_backup_restore.py` now wraps the same CLI and accepts
+the same flags.
 
 To restore on a different device, make sure to specify the `filename`. on restoring, it asks for the serial number of the destination device (to make sure it was correct, as it deletes all data) WARNING. there is no way to restore attendance data, you can keep it or clear it, but once cleared, there is no way to restore it.
 
 # Compatible devices
 
-```
-Firmware Version : Ver 6.21 Nov 19 2008
-Platform : ZEM500
-DeviceName : U580
+See `docs/compatible_devices.rst` for the canonical list and the submission template.
 
-Firmware Version : Ver 6.60 Apr 9 2010
-Platform : ZEM510_TFT
-DeviceName : T4-C
+# Roadmap
 
-Firmware Version : Ver 6.60 Dec 1 2010
-Platform : ZEM510_TFT
-DeviceName : T4-C
-
-Firmware Version : Ver 6.60 Mar 18 2011
-Platform : ZEM600_TFT
-DeviceName : iClock260
-
-Platform         : ZEM560_TFT
-Firmware Version : Ver 6.60 Feb  4 2012
-DeviceName       :
-
-Firmware Version : Ver 6.60 Oct 29 2012
-Platform : ZEM800_TFT
-DeviceName : iFace402/ID
-
-Firmware Version : Ver 6.60 Mar 18 2013
-Platform : ZEM560
-DeviceName : MA300
-
-Firmware Version : Ver 6.60 Dec 27 2014
-Platform : ZEM600_TFT
-DeviceName : iFace800/ID
-
-Firmware Version : Ver 6.60 Nov 6 2017 (remote tested with correct results)
-Platform : ZMM220_TFT
-DeviceName : (unknown device) (broken info but at least the important data was read)
-
-Firmware Version : Ver 6.60 Jun 9 2017
-Platform : JZ4725_TFT
-DeviceName : K20 (latest checked correctly!)
-
-Firmware Version : Ver 6.60 Aug 23 2014
-Platform : ZEM600_TFT
-DeviceName : VF680 (face device only, but we read the user and attendance list!)
-
-Firmware Version : Ver 6.70 Feb 16 2017
-Platform : ZLM30_TFT
-DeviceName : RSP10k1 (latest checked correctly!)
-
-Firmware Version : Ver 6.60 Jun 16 2015
-Platform : JZ4725_TFT
-DeviceName : K14 (tested & verified working as expected.)
-
-Firmware Version : Ver 6.60 Jan 13 2016
-Platform         : ZMM220_TFT
-DeviceName       : iFace702 (without voice function, test with encoding='gbk')
-
-Firmware Version : Ver 6.60 Apr 26 2016
-Platform         : ZMM210_TFT
-DeviceName       : F18/ID
-
-Firmware Version : Ver 6.60 May 25 2018
-Platform         : JZ4725_TFT
-DeviceName       : K40/ID
-```
-
-
-
-### Latest tested (not really confirmed)
-
-```
-Firmware Version : Ver 6.60 Jun 16 2015
-Platform : JZ4725_TFT
-DeviceName : iClock260
-
-Firmware Version : Ver 6.60 Jun 5 2015
-Platform : ZMM200_TFT
-DeviceName : iClock3000/ID (Active testing! latest fix)
-
-Firmware Version : Ver 6.70 Jul 12 2013
-Platform : ZEM600_TFT
-DeviceName : iClock880-H/ID (Active testing! latest fix)
-```
-
-### Not Working (needs more tests, more information)
-
-```
-Firmware Version : Ver 6.4.1 (build 99) (display version 2012-08-31)
-Platform :
-DeviceName : iClock260 (no capture data - probably similar problem as the latest TESTED)
-```
-
-If you have another version tested and it worked, please inform me to update this list!
-
-# Todo
-
-* Create better documentation
-* ~~Finger template downloader & uploader~~
-* HTTP Rest api
-* ~~Create real time api (if possible)~~
-* and much more ...
+- Create better documentation (in progress)
+- Finger template downloader & uploader (in progress, via `pyzk-backup`)
+- HTTP REST API (spec only)
+- Real-time API (spec only)
+- Expand compatible devices list and contribution guide (in progress)
+- Future ideas are tracked in `ROADMAP.md`

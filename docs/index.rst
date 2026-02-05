@@ -14,7 +14,22 @@
    topic3
    topic4
    topic5
+   backup_restore
+   troubleshooting
    compatible_devices
+   api_design
+
+.. toctree::
+   :hidden:
+   :maxdepth: 2
+   :caption: API Reference
+
+   zk_base
+   zk_user
+   zk_finger
+   zk_attendance
+   zk_const
+   zk_exception
 
 
 ******************
@@ -97,4 +112,3 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-
