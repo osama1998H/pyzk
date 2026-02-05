@@ -19,5 +19,10 @@ setup(
         'biometrics',
         'security'
     ],
+    entry_points={
+        'console_scripts': [
+            'pyzk-backup=zk.cli_backup:main',
+        ],
+    },
     zip_safe=False
 )
